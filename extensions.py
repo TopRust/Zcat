@@ -59,6 +59,7 @@ def print_log(trainer):
 
 # save log
 def save_log(trainer):
+
     directory = '../checkpoint/{}/{}'.format(gstate.get('task_name'), gstate.get('task_id'))
     if not os.path.isdir(directory):
         os.makedirs(directory)
@@ -69,6 +70,7 @@ def save_log(trainer):
 
 # drop learning rate
 def drop_lr(trainer, lr_trigger, lrs):
+
     for i in range(len(lr_trigger)):
         if gstate.get('epoch') <= lr_trigger[i]:
             for param_group in trainer.updater.param_groups:
@@ -90,6 +92,7 @@ def gs_best(trainer, key):
 
 # save the best model
 def save_best(trainer, key):
+
     if gstate.get('best_epoch') == gstate.get('epoch'):
         save_experiment(trainer, 'best_{}'.format(key))
 
@@ -101,6 +104,7 @@ def save_trigger(trainer, sv_trigger):
             name = 'epoch_{}'.format(epoch)
             save_experiment(trainer, name)
             break
+
 # save experiment
 def save_experiment(trainer, name):
 
@@ -120,6 +124,7 @@ def basic_save(trainer, name, **kwargs):
 
 # print the best record
 def print_best(trainer, key):
+    
     print('best epoch: {}, best {}: {:.6f}'.format(gstate.get('best_epoch'),  key, gstate.get('best_{}'.format(key))))
 
 # resume the resume_epoch model. the default value of resume_epoch is -1, resume the best model
