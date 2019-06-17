@@ -16,7 +16,6 @@ def test(trainer, loader_test, use_cuda, supervised=True):
         if not supervised:
             if use_cuda:
                 x = x.cuda()
-            x = x.float()
             x = Variable(x)
             loss = trainer.experiment(x)
         else:
